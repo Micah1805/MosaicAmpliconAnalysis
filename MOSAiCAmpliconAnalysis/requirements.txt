@@ -1,0 +1,12 @@
+# R version: >= 4.2
+
+# Required CRAN packages
+tidyverse
+phyloseq
+vegan
+data.table
+ggplot2
+ape
+
+# Optional Bioconductor package
+microbiome
