@@ -2,11 +2,30 @@
 
 # Required CRAN packages
 tidyverse
+dplyr
+plyr
+tidyr
 phyloseq
 vegan
 data.table
 ggplot2
 ape
+readxl
+xlsx
+stringr
+grid
+magrittr
+paletteer
+RColorBrewer
+zoo
 
-# Optional Bioconductor package
+microeco
+# Packages required for microeco see: https://chiliubio.github.io/microeco_tutorial/intro.html#dependence
+
+# Bioconductor package
+dada2
 microbiome
+Biostrings
+shortRead
+
+
