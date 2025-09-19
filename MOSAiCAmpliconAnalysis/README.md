@@ -1,7 +1,7 @@
 # MosaicAmpliconAnalysis
 
-This repository contains a structured pipeline for the analysis of amplicon sequencing data 
-from the MOSAiC expedition. It has been refactored for clarity, reproducibility, and scientific publication standards.
+This repository contains a structured pipeline for the analysis of amplicon sequencing data from the MOSAiC expedition. 
+It has been refactored for clarity, reproducibility, and scientific publication standards.
 
 ---
 
@@ -9,41 +9,70 @@ from the MOSAiC expedition. It has been refactored for clarity, reproducibility,
 
 ```
 MosaicAmpliconAnalysis/
-├── data/           # Input data or instructions to download datasets
-├── output/         # Output directory for generated results
-├── scripts/        # Analysis scripts (ordered and modular)
-├── figures/        # Final plots and visualizations
-├── requirements.txt # R dependencies
-├── run_all.R       # Master script for full pipeline execution
-└── README.md       # Project overview and instructions
+├── data/             # Input data or instructions to download datasets
+  ├── 16S/            # Output of 16S dada2 analysis
+    ├── Fastqs/       # Place to put 16S fastqs downloaded from ENA
+  ├── 18S/            # Output of 18S dada2 analysis
+    ├── Fastqs/       # Place to put 18S fastqs downloaded from ENA
+├── output/           # Output directory for generated results
+  ├── Microeco/       # Microeco statistics output
+├── scripts/          # Analysis scripts (ordered and modular)
+  ├── run_all.R       # Master script for full pipeline execution
+├── figures/          # Final plots and visualizations
+├── requirements.txt  # R dependencies
+├── install.R         # Script to install requirements
+├── LICENSE           # Licensing information
+├── CITATION.cff      # Citation information
+└── README.md         # Project overview and instructions
 ```
 
 ---
 
 ## 🔧 Requirements
 
-- R version ≥ 4.2
-- R packages:
-  - tidyverse
-  - phyloseq
-  - vegan
-  - data.table
-  - ggplot2
-  - ape
-  - microbiome
+# R version: >= 4.2
+
+# Required CRAN packages
+tidyverse
+dplyr
+plyr
+tidyr
+vegan
+data.table
+ggplot2
+ape
+readxl
+xlsx
+stringr
+grid
+magrittr
+paletteer
+RColorBrewer
+zoo
+
+microeco
+# Packages required for microeco see: https://chiliubio.github.io/microeco_tutorial/intro.html#dependence
+
+# Bioconductor package
+BiocManager
+dada2
+microbiome
+Biostrings
+shortRead
+phyloseq
 
 You can install the dependencies via:
 
 ```r
-install.packages(c("tidyverse", "phyloseq", "vegan", "data.table", "ggplot2", "ape"))
+install.packages(c("tidyverse", "dplyr", "plyr, "tydyr, "vegan", "data.table", "ggplot2", "ape", "readxl", "xlsx", "stringr", "grid", "magrittr", "paletteer", "RColorBrewer", "zoo", "microeco"))
 ```
 
 ```r
-# Optional: from Bioconductor
+#Bioconductor packages
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
-BiocManager::install("microbiome")
+BiocManager::install(c("microbiome","dada2","Phyloseq", "Biostrings","shortRead"))
 ```
 
 ---
