@@ -1,1 +1,0 @@
-Download all 18S fastqs in this directory
