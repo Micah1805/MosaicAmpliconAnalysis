@@ -1,4 +1,4 @@
-# Script: 05_prepare_joint_tables.R
+# Script: 03_prepare_joint_tables.R
 # Purpose: Combines prokaryotic and eukaryotic tables into unified formats.
 # Input: asv_abundance_prokaryotes.csv, asv_abundance_eukaryotes.csv,
 #        taxonomy_prokaryotes.csv, taxonomy_eukaryotes.csv
@@ -51,3 +51,4 @@ Taxa_Prok_Euk <- rbind(as.data.frame(prok_taxa),as.data.frame(euk_taxa))
 
 #save(Taxa_Prok_Euk,file="./output/taxonomy_prokaryotes_eukaryotes.Rdata")
 write.csv(Taxa_Prok_Euk,file="./output/taxonomy_prokaryotes_eukaryotes.csv", row.names=TRUE)
+
