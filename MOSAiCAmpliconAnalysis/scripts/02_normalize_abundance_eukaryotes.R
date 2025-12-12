@@ -1,4 +1,4 @@
-# Script: 04_normalize_abundance_eukaryotes.R
+# Script: 02_normalize_abundance_eukaryotes.R
 # Purpose: Normalizes abundance values for eukaryotic ASVs.
 # Input: Metadata_18S.csv, asv_table_eukaryotes.csv
 # Main output: asv_categorised_eukaryotes.csv,
@@ -146,5 +146,6 @@ write.csv(Euk_abund_water,file=paste0(path,"/asv_abundance_eukaryotes.csv"), row
 normEukAbund <- apply(Euk_abund_water,2,function(x)sqrt(x/sum(x)))
 #save(normEukAbund,file=paste0(path,"/asv_norm_eukaryotes.Rdata"))
 write.csv(normEukAbund,file=paste0(path,"/asv_norm_eukaryotes.csv"), row.names=TRUE)
+
 
 
