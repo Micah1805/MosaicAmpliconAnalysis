@@ -40,11 +40,11 @@ write.csv(euk_taxa,file="./output/taxonomy_eukaryotes_clean.csv", row.names=TRUE
 ####Environmental data####
 #Load data
 Water_sort_Prok <- read.csv("./output/asv_categorised_prokaryotes.csv", row.names=1)
-Water_sort_Prok$geographic.location..depth.<- as.numeric(Water_sort_Prok$geographic.location..depth.)
+Water_sort_Prok$`geographic location (depth)`<- as.numeric(Water_sort_Prok$`geographic location (depth)`)
 Water_sort_Prok$Leg <- as.numeric(Water_sort_Prok$Leg)
 
 Water_sort_Euk <- read.csv("./output/asv_categorised_eukaryotes.csv", row.names=1) 
-Water_sort_Euk$geographic.location..depth. <- as.numeric(Water_sort_Euk$geographic.location..depth.)
+Water_sort_Euk$`geographic location (depth)` <- as.numeric(Water_sort_Euk$`geographic location (depth)`)
 Water_sort_Euk$Leg <- as.numeric(Water_sort_Euk$Leg)
 
 #Transform tables
@@ -59,8 +59,8 @@ Env_Prok$Date_Category <- str_replace(Env_Prok$Date_Category,"_","-")
 Env_Prok$Date_Category <- str_replace(Env_Prok$Date_Category,"_"," ")
 Env_Prok[c("Date", "Category")] <- str_split_fixed(Env_Prok$Date_Category, " ", 2) 
 Env_Prok$Date_Category <- str_replace(Env_Prok$Date_Category," ","_")
-Env_Prok <- Env_Prok %>% relocate("Leg") %>% relocate("geographic.location..depth.")
-Env_Prok <- Env_Prok %>% relocate("geographic.location..longitude.") %>% relocate("geographic.location..latitude.")
+Env_Prok <- Env_Prok %>% relocate("Leg") %>% relocate(`geographic location (depth)`)
+Env_Prok <- Env_Prok %>% relocate(geographic location (longitude)") %>% relocate("geographic location (latitude)")
 Env_Prok <- Env_Prok %>% relocate("Date") %>% relocate("Date_Category")
 Env_Prok <- Env_Prok[1:7]
 Env_Prok$Date_Category <- str_replace_all(Env_Prok$Date_Category,"-","_")
@@ -77,8 +77,8 @@ Env_Euk$Date_Category <- str_replace(Env_Euk$Date_Category,"_","-")
 Env_Euk$Date_Category <- str_replace(Env_Euk$Date_Category,"_"," ")
 Env_Euk[c("Date", "Category")] <- str_split_fixed(Env_Euk$Date_Category, " ", 2) 
 Env_Euk$Date_Category<-str_replace(Env_Euk$Date_Category," ","_")
-Env_Euk <- Env_Euk %>% relocate("Leg") %>% relocate("geographic.location..depth.")
-Env_Euk <- Env_Euk %>% relocate("geographic.location..longitude.") %>% relocate("geographic.location..latitude.")
+Env_Euk <- Env_Euk %>% relocate("Leg") %>% relocate("geographic location (depth)")
+Env_Euk <- Env_Euk %>% relocate("geographic location (longitude)") %>% relocate("geographic location (latitude)")
 Env_Euk <- Env_Euk %>% relocate("Date") %>% relocate("Date_Category")
 Env_Euk <- Env_Euk[1:7]
 Env_Euk$Date_Category <- str_replace_all(Env_Euk$Date_Category,"-","_")
@@ -103,3 +103,4 @@ colnames(Env_Euk_Prok)[6] ="Category"
 
 #save(Env_Euk_Prok,file=paste0(path,"/Env_Euk_Prok.Rdata"))
 write.csv(Env_Euk_Prok,file="./output/environmental_data_prokaryotes_eukaryotes.csv", row.names=TRUE)
+
