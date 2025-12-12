@@ -36,11 +36,11 @@ sample2 <- sub("-corr.*",'',sample)
 sample2
 
 #Subset metadata and add sample names
-Euk_Date<-Meta_Euk %>% dplyr::select("collection.date..start.",
-                                     "geographic.location..longitude.",
-                                     "geographic.location..latitude.",
-                                     "geographic.location..depth.",
-                                     sample_description,"environmental.package") 
+Euk_Date<-Meta_Euk %>% dplyr::select(""collection date (start)",
+                                     "geographic location (longitude)",
+                                     "geographic location (latitude)",
+                                     "geographic location (depth)",
+                                     sample_description,"environmental package") 
 Euk_Date$ID <- sample2
 Euk_Date <- na.omit(Euk_Date)
 Euk_Date$ID <- str_replace_all(Euk_Date$ID,"-",".")
@@ -68,12 +68,12 @@ Abundance_merged_Euk <- Abundance_merged_Euk%>% relocate("ID")
 
 ####Create depth categories####
 #Make sample depth numeric
-Abundance_merged_Euk$geographic.location..depth. <- as.numeric(Abundance_merged_Euk$geographic.location..depth.)
+Abundance_merged_Euk$`geographic location (depth)` <- as.numeric(Abundance_merged_Euk$`geographic location (depth)`)
 
 #Create rounded depth values
-Abundance_merged_Euk$Depth_rounded <- round(Abundance_merged_Euk$geographic.location..depth.)
+Abundance_merged_Euk$Depth_rounded <- round(Abundance_merged_Euk$`geographic location (depth)`)
 Abundance_merged_Euk <- Abundance_merged_Euk %>% relocate("Depth_rounded")
-Abundance_merged_Euk$geographic.location..depth. <- as.character(Abundance_merged_Euk$geographic.location..depth.)
+Abundance_merged_Euk$`geographic location (depth)` <- as.character(Abundance_merged_Euk$`geographic location (depth)`)
 Abundance_merged_Euk <- Abundance_merged_Euk[order(Abundance_merged_Euk$Depth_rounded),]
 
 
@@ -103,10 +103,10 @@ TopBottom[which(TopBottom == "chlmax"|
 
 TopBottom[which(TopBottom == "50"|
                   TopBottom == "51"|
-                  TopBottom == "52")]=">50m"
+                  TopBottom == "52")]="50m"
 
 TopBottom[which(TopBottom == "100"|
-                  TopBottom == "101")]=">75m"
+                  TopBottom == "101")]="100m"
 
 
 #Assign categories
@@ -118,7 +118,7 @@ Water_sort_Euk <- Water_sort_Euk %>% relocate("ID")
 
 
 #Create a new column Date_Category
-Water_sort_Euk$Date_Category <- paste(Water_sort_Euk$collection.date..start.,Water_sort_Euk$Category)
+Water_sort_Euk$Date_Category <- paste(Water_sort_Euk$"collection date (start)",Water_sort_Euk$Category)
 Water_sort_Euk$Date_Category <- str_replace_all(Water_sort_Euk$Date_Category,"-","_")
 Water_sort_Euk$Date_Category <- str_replace_all(Water_sort_Euk$Date_Category," ","_")
 Water_sort_Euk <- Water_sort_Euk %>% relocate("Date_Category")
@@ -141,9 +141,10 @@ Euk_abund_water<-as.data.frame(t(Euk_water_m))
 #save(Euk_abund_water,file=paste0(path,"/Abundance_Euk.Rdata"))
 write.csv(Euk_abund_water,file=paste0(path,"/asv_abundance_eukaryotes.csv"), row.names=TRUE)
 
-####Normlize data####
+####Normalize data####
 #Hellinger transformation and normalization abundance data
 normEukAbund <- apply(Euk_abund_water,2,function(x)sqrt(x/sum(x)))
 #save(normEukAbund,file=paste0(path,"/asv_norm_eukaryotes.Rdata"))
 write.csv(normEukAbund,file=paste0(path,"/asv_norm_eukaryotes.csv"), row.names=TRUE)
+
 
