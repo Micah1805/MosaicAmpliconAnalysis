@@ -1,4 +1,4 @@
-# Script: 08_Create_microeco_objects.R
+# Script: 05_Create_microeco_objects.R
 # Purpose: Create a microeco object used for further analysis (steps modified from the Microeco-Tutorial (https://chiliubio.github.io/microeco_tutorial/))
 # Input: asv_norm_prokaryotes.csv, taxonomy_prokaryotes.csv, environmental_data_prokaryotes.csv,
 #        asv_norm_eukaryotes.csv, taxonomy_eukaryotes.csv, environmental_data_eukaryotes.csv,
@@ -261,6 +261,7 @@ class(dataset3$beta_diversity)
 dataset3$save_betadiv(dirpath = paste0(path, "/Microeco/beta_diversity"))
 
 save(dataset3,file=paste0(path, "./microeco_prok_euk.Rdata"))
+
 
 
 
