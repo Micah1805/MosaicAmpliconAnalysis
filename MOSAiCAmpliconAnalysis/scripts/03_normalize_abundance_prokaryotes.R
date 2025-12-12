@@ -36,10 +36,10 @@ sample2 <- sub("-corr.*",'',sample)
 sample2
 
 #Subset metadata and add sample names
-t_Met <- Meta_data %>% dplyr::select("collection.date",
-                                   "geographic.location..latitude.",
-                                   "geographic.location..longitude.",
-                                   "geographic.location..depth.",
+t_Met <- Meta_data %>% dplyr::select("collection date",
+                                   "geographic location (latitude)",
+                                   "geographic location (longitude)",
+                                   "geographic location (depth)",
                                    sample_description) 
 t_Met$ID <- sample2
 t_Met <- na.omit(t_Met)
@@ -65,12 +65,12 @@ Abundance_merged <- Abundance_merged%>% relocate("ID")
 
 ####Create depth categories####
 #Make sample depth numeric
-Abundance_merged$geographic.location..depth. <- as.numeric(Abundance_merged$geographic.location..depth.)
+Abundance_merged$`geographic location (depth)` <- as.numeric(Abundance_merged$`geographic location (depth)`)
 
 #Create rounded depth values
-Abundance_merged$Depth_rounded <- round(Abundance_merged$geographic.location..depth.)
+Abundance_merged$Depth_rounded <- round(Abundance_merged$`geographic location (depth)`)
 Abundance_merged <- Abundance_merged %>% relocate("Depth_rounded")
-Abundance_merged$geographic.location..depth. <- as.character(Abundance_merged$geographic.location..depth.)
+Abundance_merged$`geographic location (depth)` <- as.character(Abundance_merged$`geographic location (depth)`)
 Abundance_merged <- Abundance_merged[order(Abundance_merged$Depth_rounded),]
 
 
@@ -98,10 +98,10 @@ TopBottom[which(TopBottom == "12"|
 TopBottom[which(TopBottom == "50"|
                   TopBottom == "51"|
                   TopBottom == "52"|
-                  TopBottom == "52")]=">50m"
+                  TopBottom == "52")]="50m"
 
 TopBottom[which(TopBottom == "100"|
-                  TopBottom == "101")]=">75m"
+                  TopBottom == "101")]="100m"
 
 #Assign categories
 Abundance_merged$Category = paste0("Water","_",TopBottom)
@@ -112,7 +112,7 @@ Water_sort_Prok <- Water_sort_Prok %>% relocate("ID")
 
 
 #Create a new column Date_Category
-Water_sort_Prok$Date_Category <- paste(Water_sort_Prok$collection.date,Water_sort_Prok$Category)
+Water_sort_Prok$Date_Category <- paste(Water_sort_Prok$"collection date",Water_sort_Prok$Category)
 Water_sort_Prok$Date_Category <- str_replace_all(Water_sort_Prok$Date_Category,"-","_")
 Water_sort_Prok$Date_Category <- str_replace_all(Water_sort_Prok$Date_Category," ","_")
 Water_sort_Prok<-Water_sort_Prok %>% relocate("Date_Category")
@@ -135,9 +135,10 @@ Prok_abund_water <- as.data.frame(t(Water_sort_Prok_m))
 #save(Prok_abund_water,file=paste0(path,"/Abundance_Prok.Rdata"))
 write.csv(Prok_abund_water,file=paste0(path,"/asv_abundance_prokaryotes.csv"), row.names=TRUE)
 
-####Normlize data####
+####Normalize data####
 #Hellinger transformation and normalization abundance data
 normProkAbund <- apply(Prok_abund_water,2,function(x)sqrt(x/sum(x)))
 #save(normProkAbund,file=paste0(path,"/asv_norm_prokaryotes.Rdata"))
 write.csv(normProkAbund,file=paste0(path,"/asv_norm_prokaryotes.csv"), row.names=TRUE)
+
 
