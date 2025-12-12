@@ -1,4 +1,4 @@
-# Script: 03_normalize_abundance_prokaryotes.R
+# Script: 01_normalize_abundance_prokaryotes.R
 # Purpose: Normalizes abundance values for prokaryotic ASVs.
 # Input: Metadata_16S.csv, asv_table_prokaryotes.csv
 # Main output: asv_categorised_prokaryotes.csv,
@@ -140,5 +140,6 @@ write.csv(Prok_abund_water,file=paste0(path,"/asv_abundance_prokaryotes.csv"), r
 normProkAbund <- apply(Prok_abund_water,2,function(x)sqrt(x/sum(x)))
 #save(normProkAbund,file=paste0(path,"/asv_norm_prokaryotes.Rdata"))
 write.csv(normProkAbund,file=paste0(path,"/asv_norm_prokaryotes.csv"), row.names=TRUE)
+
 
 
