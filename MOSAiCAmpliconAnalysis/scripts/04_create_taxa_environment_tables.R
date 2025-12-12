@@ -1,4 +1,4 @@
-# Script: 06_create_taxa_environment_tables.R
+# Script: 04_create_taxa_environment_tables.R
 # Purpose: Creates taxonomic and environmental metadata tables.
 # Input: taxonomy_eukaryotes.csv, 
 #        asv_categorised_prokaryotes.csv, asv_categorised_eukaryotes.csv
@@ -103,4 +103,5 @@ colnames(Env_Euk_Prok)[6] ="Category"
 
 #save(Env_Euk_Prok,file=paste0(path,"/Env_Euk_Prok.Rdata"))
 write.csv(Env_Euk_Prok,file="./output/environmental_data_prokaryotes_eukaryotes.csv", row.names=TRUE)
+
 
