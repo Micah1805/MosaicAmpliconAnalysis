@@ -297,7 +297,7 @@ dataset2$sample_table <- dataset2$sample_table %>%
 dataset2$sample_table$Day_Month <- factor(dataset2$sample_table$Day_Month,
                                           levels =  unique(dataset2$sample_table$Day_Month))
 
-#Remove "s__" in front of Phyla and "c__" in front of class names
+#Remove "s__" in front of subdivision and "c__" in front of class names
 dataset2$tax_table$Subdivision <- gsub("s__","",dataset2$tax_table$Subdivision)
 dataset2$tax_table$Class <- gsub("c__","",dataset2$tax_table$Class)
 
@@ -510,4 +510,5 @@ ggsave(g_genus_euk,
        device = "jpeg",
        width = 12,
        height = 8)
+
 
