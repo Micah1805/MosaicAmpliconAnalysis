@@ -1,7 +1,7 @@
 # Script: 7_Changes_in_species_composition_over_time.R
 # Purpose: Create bar plots showing the relative abundance (steps modified from the Microeco-Tutorial (https://chiliubio.github.io/microeco_tutorial/))
 # Input: microeco_prok.Rdata, microeco_euk.Rdata
-# Main output: Figure_5.jpeg, SF_2_b.jpeg, SF_3_a.jpeg, Figure_5.jpeg, SF_2_d.jpeg, SF_3_c.jpeg
+# Main output: Figure_5.jpeg, SF_2_b.jpeg, SF_3_a.jpeg, Figure_4.jpeg, SF_2_d.jpeg, SF_3_c.jpeg
 # Author: [Insert your name]
 # Date: [Insert date or leave blank]
 # -----------------------------------------------------
@@ -510,5 +510,6 @@ ggsave(g_genus_euk,
        device = "jpeg",
        width = 12,
        height = 8)
+
 
 
